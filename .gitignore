@@ -1,0 +1,62 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]ogs/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Test results
+TestResults/
+*.trx
+
+# Database files
+*.db
+*.db-journal
+
+# Compiled binaries
+*.exe
+*.dll
+*.pdb
+
+# Others
+*.psd
+*.tmp
+
+# Ignore generated docs
+docs/api.md
+
+# Ignore local scripts output
+generate-api-docs.ps1
+
+# Ignore by extension
+*.bak
+*.swp
+
+# Ignore coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Ignore publish output
+publish/
+out/

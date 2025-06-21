@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileIndexer.Storage</name>
+    </assembly>
+    <members>
+        <member name="T:FileIndexer.Storage.IStorageModule">
+            <summary>
+            存储模块接口：单线程从队列消费并将文件元数据写入 SQLite。
+            </summary>
+        </member>
+        <member name="M:FileIndexer.Storage.IStorageModule.Initialize(System.String)">
+            <summary>
+            初始化存储模块，指定 SQLite 数据库文件路径。
+            </summary>
+            <param name="databasePath">.db 文件完整路径。</param>
+        </member>
+        <member name="M:FileIndexer.Storage.IStorageModule.Start">
+            <summary>
+            启动后台写入线程，开始消费队列。
+            </summary>
+        </member>
+        <member name="M:FileIndexer.Storage.IStorageModule.Enqueue(FileIndexer.Core.IFileMetadata)">
+            <summary>
+            将一个文件元数据入队，由后台线程顺序写入数据库。
+            </summary>
+            <param name="fileMetadata">待写入的文件元数据。</param>
+        </member>
+        <member name="M:FileIndexer.Storage.IStorageModule.StopAsync">
+            <summary>
+            通知后台线程处理完当前队列并优雅退出，返回完成任务的异步 <see cref="T:System.Threading.Tasks.Task"/>。
+            </summary>
+        </member>
+        <member name="P:FileIndexer.Storage.IStorageModule.PendingCount">
+            <summary>
+            当前待处理队列长度，可用于进度监控和测试断言。
+            </summary>
+        </member>
+        <member name="T:FileIndexer.Storage.StorageModule">
+            <summary>
+            存储模块实现：单线程从队列消费并将文件元数据写入 SQLite。
+            </summary>
+        </member>
+        <member name="P:FileIndexer.Storage.StorageModule.PendingCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.Initialize(System.String)">
+            <summary>
+            初始化存储模块，指定 SQLite 数据库文件路径。
+            </summary>
+            <param name="databasePath">.db 文件完整路径。</param>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.Start">
+            <summary>
+            启动后台写入线程，开始消费队列。
+            </summary>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.Enqueue(FileIndexer.Core.IFileMetadata)">
+            <summary>
+            将一个文件元数据入队，由后台线程顺序写入数据库。
+            </summary>
+            <param name="fileMetadata">待写入的文件元数据。</param>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.StopAsync">
+            <summary>
+            通知后台线程处理完当前队列并优雅退出，返回完成任务的异步 <see cref="T:System.Threading.Tasks.Task"/>。
+            </summary>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.Dispose">
+            <summary>
+            释放资源。
+            </summary>
+        </member>
+        <member name="M:FileIndexer.Storage.StorageModule.WorkerLoop(System.Threading.CancellationToken)">
+            <summary>
+            后台线程循环，批量写入数据库。
+            </summary>
+            <param name="token">取消令牌。</param>
+        </member>
+    </members>
+</doc>
